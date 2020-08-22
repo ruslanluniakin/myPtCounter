@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PtCounterWeb.Models.DeviceReportsModel>
+@{
+    ViewBag.Title = "Страница";
+}
+
+@foreach (var item in Model)
+{
+    <div>
+        <table class="table">
+            <tr><td>Устройсво</td><td>@item.Name</td></tr>
+            <tr><td style="width: 40%">Время отчета</td><td style="width: 40%">Продолжительность замера</td><td style="width: 20%">Количество частиц</td></tr>
+        </table>
+        <div id="scrollers"
+             style="overflow-y: scroll;
+                height: 500px;">
+            <table class="table">
+                @foreach (var report in item.Reports)
+                {
+                    <tr><td style="width: 40%">@report.dateTime</td><td style="width: 40%">@report.Duration</td><td style="width: 20%">@report.Count</td></tr>
+                }
+            </table>
+        </div>
+        <table class="table">
+            <tr style="style=" width: 95%""><td style="width: 40%"></td><td style="width: 40%">Общее количество частиц</td><td style="width: 30%">@item.Count</td></tr>
+        </table>
+    </div>
+}
+<script type="text/javascript">
+            window.onload = function(){
+                document.getElementById('scrollers').scrollTop = 9999;
+            }
+</script>
+
